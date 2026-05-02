@@ -27,4 +27,10 @@ public class UiAutomatorObjects {
         textToBeChanged = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.id("ru.netology.testing.uiautomator:id/textToBeChanged")));
     }
+
+    public WebElement getText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.id("ru.netology.testing.uiautomator:id/text")));
+    }
 }

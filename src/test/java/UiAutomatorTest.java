@@ -3,10 +3,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
+import org.openqa.selenium.WebElement;
 
 public class UiAutomatorTest {
 
@@ -21,7 +18,9 @@ public class UiAutomatorTest {
 
     @Test
     public void testEmptyInput() {
+        uiObjects.buttonChange.isDisplayed();
         uiObjects.buttonChange.click();
+        uiObjects.textToBeChanged.isDisplayed();
         String text = uiObjects.textToBeChanged.getText();
         Assertions.assertEquals("Hello UiAutomator!", text);
     }
@@ -29,11 +28,13 @@ public class UiAutomatorTest {
     @Test
     public void testOpenNewActivity() {
         String inputText = "Hello Appium";
+        uiObjects.userInput.isDisplayed();
         uiObjects.userInput.sendKeys(inputText);
+        uiObjects.buttonActivity.isDisplayed();
         uiObjects.buttonActivity.click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        String result = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.id("ru.netology.testing.uiautomator:id/text"))).getText();
+        WebElement textElement = uiObjects.getText();
+        textElement.isDisplayed();
+        String result = textElement.getText();
         Assertions.assertEquals(inputText, result);
     }
 
